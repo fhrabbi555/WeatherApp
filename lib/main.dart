@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Weather App'),
+          title: Text('Weather Apps'),
         ),
       ),
     );
