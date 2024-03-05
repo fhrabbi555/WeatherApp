@@ -39,7 +39,23 @@ class GlobalController extends GetxController{
 
     if(locationPermission == LocationPermission.deniedForever){
       return Future.error("Location Permission Denied forever");
+    } else if(locationPermission == LocationPermission.deniedForever){
+        locationPermission = await Geolocator.requestPermission();
+        if(locationPermission == LocationPermission.denied){
+          return Future.error("Location permission is Denied");
+        }
     }
+    //get current location
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high).
+    then((value) {
+            _lattitude.value = value.latitude;
+            _longitude.value = value.longitude;
+            _isLoading.value = false;
+    });
+
+
+
   }
 
 }
